@@ -11,7 +11,7 @@ public class PlayerMove : NetworkBehaviour
     [SyncVar]
     public Vector2 direction;
 
-
+    public bool IsMoving => direction.sqrMagnitude > 0;
     [Command]
     public void CmdSetDirectin(Vector2 dir)
     {

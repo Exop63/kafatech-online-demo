@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
+using System;
+using System.Diagnostics;
 using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
 
     public Slider slider;
+
+    public void TakeDamage(float damage)
+    {
+        current = Math.Max(0, current -= damage);
+    }
 
     void Update()
     {

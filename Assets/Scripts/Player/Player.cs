@@ -13,11 +13,20 @@ public class Player : NetworkBehaviour
             return playerMove;
         }
     }
+    public PlayerHealth PlayerHealth
+    {
+        get
+        {
 
+            if (playerHealth == null) playerHealth = GetComponent<PlayerHealth>();
+            return playerHealth;
+        }
+    }
     public static Player local;
 
 
     private PlayerMove playerMove;
+    private PlayerHealth playerHealth;
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();

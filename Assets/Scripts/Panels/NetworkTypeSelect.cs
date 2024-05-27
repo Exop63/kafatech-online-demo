@@ -17,7 +17,7 @@ public class NetworkTypeSelect : MonoBehaviour
 
     private void Awake()
     {
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
 OnClickClient();
 #endif
     }

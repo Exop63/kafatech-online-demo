@@ -9,10 +9,20 @@ public class CombatSystem : NetworkBehaviour
     private double coolDown = 0;
 
 
+    private Health health;
+    public Health Health
+    {
+        get
+        {
+            if (health == null) health = GetComponent<Health>();
+            return health;
+        }
+    }
+
     [ServerCallback]
     private void Update()
     {
-        if (IsMoving() || !isServer) return;
+        if (CanCombat() || !isServer) return;
         HitControl();
 
     }
@@ -20,7 +30,7 @@ public class CombatSystem : NetworkBehaviour
     private void HitControl()
     {
 
-        if (coolDown > NetworkTime.time) return;
+        if (coolDown > NetworkTime.time || Health.IsDeath) return;
 
 
         var targets = Physics2D.OverlapCircleAll(transform.position, hitRange);
@@ -29,7 +39,10 @@ public class CombatSystem : NetworkBehaviour
         for (int i = 0; i < targets.Length; i++)
         {
             var target = targets[i];
-            if (target.gameObject != gameObject && target.TryGetComponent<CombatSystem>(out var enemy))
+            if (target.gameObject != gameObject &&
+                target.TryGetComponent<CombatSystem>(out var enemy) &&
+                enemy.TryGetComponent<Health>(out var health) &&
+                !health.IsDeath)
             {
                 Hit(target.transform);
             }
@@ -48,7 +61,7 @@ public class CombatSystem : NetworkBehaviour
     {
 
     }
-    public virtual bool IsMoving()
+    public virtual bool CanCombat()
     {
         return true;
     }

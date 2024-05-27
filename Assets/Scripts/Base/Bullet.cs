@@ -18,11 +18,25 @@ public class Bullet : NetworkBehaviour
         var distance = Vector3.Distance(target, transform.position);
         if (distance < .1f)
         {
-            var targetObject = Physics2D.OverlapCircle(transform.position, 1);
-            if (targetObject != null && targetObject.TryGetComponent<CombatSystem>(out var enemy) && enemy.gameObject != owner)
+            var targets = Physics2D.OverlapCircleAll(transform.position, .2f);
+
+            for (int i = 0; i < targets.Length; i++)
             {
-                enemy.TakeDamage(10);
+                var target = targets[i];
+                if (
+                    target != null &&
+                    target.gameObject != owner &&
+                    target.TryGetComponent<CombatSystem>(out var enemy) &&
+                    enemy.TryGetComponent<Health>(out var health) &&
+                    !health.IsDeath)
+                {
+                    enemy.TakeDamage(15);
+                }
             }
+            // if (targetObject != null && targetObject.TryGetComponent<CombatSystem>(out var enemy) && enemy.gameObject != owner)
+            // {
+            //     enemy.TakeDamage(10);
+            // }
             NetworkServer.Destroy(gameObject);
             return;
         }

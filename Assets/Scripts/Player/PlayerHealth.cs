@@ -1,12 +1,17 @@
-using System;
+using Mirror;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
-    public void TakeDamage(float damage)
+    [ClientRpc]
+    public override void RpcDeath()
     {
-        current = Math.Max(0, current -= damage);
+        Debug.Log(nameof(RpcDeath));
+        var endGame = FindAnyObjectByType<EndGamePanel>(FindObjectsInactive.Include);
+        if (endGame != null)
+        {
+            endGame.GetComponent<EndGamePanel>().Show(Minion.local.gameObject == gameObject);
+        }
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using Mirror;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class Health : NetworkBehaviour
 
     public float max;
     public Hud hudPrefab;
+
+    public bool IsDeath => current == 0;
 
     private Hud hudObject;
 
@@ -23,6 +26,7 @@ public class Health : NetworkBehaviour
         base.OnStartServer();
         current = max;
     }
+
     private void OnDestroy()
     {
 
@@ -31,4 +35,18 @@ public class Health : NetworkBehaviour
             DestroyImmediate(hudObject);
         }
     }
+    [ServerCallback]
+    public virtual void TakeDamage(float damage)
+    {
+        current = Math.Max(0, current -= damage);
+        Debug.Log(nameof(TakeDamage) + " current: " + current);
+
+        if (IsDeath)
+        {
+            Debug.Log(nameof(TakeDamage) + " isDeath");
+            RpcDeath();
+        }
+    }
+    [ClientRpc]
+    public virtual void RpcDeath() { }
 }

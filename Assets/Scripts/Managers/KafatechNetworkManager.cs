@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class KafatechNetworkManager : NetworkManager
 {
-    public void StartGame()
-    {
 
-    }
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -16,7 +13,6 @@ public class KafatechNetworkManager : NetworkManager
     {
         base.OnClientConnect();
         GameObject.Find("NetworkTypeSelectPanel")?.gameObject.SetActive(false);
-
     }
 
     public override void OnClientError(TransportError error, string reason)

@@ -5,21 +5,21 @@ using UnityEngine;
 public class PlayerCombat : CombatSystem
 {
     public Bullet bullet;
-    public Player Player
+    public Minion Player
     {
         get
         {
-            if (player == null) player = GetComponent<Player>();
+            if (player == null) player = GetComponent<Minion>();
             return player;
         }
     }
-    private Player player;
+    private Minion player;
 
     public override void TakeDamage(float damage)
     {
         player.PlayerHealth.TakeDamage(damage);
     }
-    public override bool IsMoving()
+    public override bool CanCombat()
     {
         return Player.PlayerMove.IsMoving;
     }

@@ -5,15 +5,15 @@ using UnityEngine;
 public class PlayerCombat : CombatSystem
 {
     public Bullet bullet;
-    public Minion Player
+    public Player Player
     {
         get
         {
-            if (player == null) player = GetComponent<Minion>();
+            if (player == null) player = GetComponent<Player>();
             return player;
         }
     }
-    private Minion player;
+    private Player player;
 
     public override void TakeDamage(float damage)
     {

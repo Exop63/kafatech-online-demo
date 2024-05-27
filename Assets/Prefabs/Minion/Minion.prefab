@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
-  m_Color: {r: 0.98039216, g: 0.2, b: 0.3091078, a: 1}
+  m_Color: {r: 0.2, g: 0.8265488, b: 0.98039216, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,6 +98,8 @@ GameObject:
   - component: {fileID: 3274596178443341072}
   - component: {fileID: 7954541862761809763}
   - component: {fileID: -259790649650598500}
+  - component: {fileID: 995229809315322998}
+  - component: {fileID: -460099325283261068}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -220,6 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ebdd81b3562559d8828c92436a7c8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &-259790649650598500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +237,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5713ce80121312ba26a246288d10e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  hitRange: 2
+  shotTime: 0.5
+  health: {fileID: 995229809315322998}
+  bullet: {fileID: -2272014709584064438, guid: c145310ae78373c12b78f91c64811b7d, type: 3}
+--- !u!114 &995229809315322998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806666480732845550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2005fac32d72d3d699700e220e91ba9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  current: 0
+  max: 30
+  hudPrefab: {fileID: -5293470730059826689, guid: 4cc1d5d120ddf61a1ad9a6ad78672f16, type: 3}
+--- !u!114 &-460099325283261068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806666480732845550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5468a0ae180dedcb184a8432714bf448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  speed: 1
+  target: {fileID: 0}
+  health: {fileID: 0}

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using Mirror;
 using UnityEngine;
 
@@ -21,5 +20,9 @@ public class MinionCombatSystem : CombatSystem
         var bulletObject = Instantiate(bullet, transform.position, Quaternion.identity);
         bulletObject.Setup(target.position, gameObject);
         NetworkServer.Spawn(bulletObject.gameObject);
+    }
+    public override void TakeDamage(float damage)
+    {
+        Minion.MinionHealth.TakeDamage(damage);
     }
 }

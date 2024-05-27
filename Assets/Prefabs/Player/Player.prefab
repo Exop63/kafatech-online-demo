@@ -222,7 +222,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  speed: 8
+  speed: 4
   direction: {x: 0, y: 0}
 --- !u!114 &2960051703349168909
 MonoBehaviour:
@@ -258,6 +258,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   hitRange: 2
+  shotTime: 1
+  health: {fileID: 0}
   bullet: {fileID: -2272014709584064438, guid: c145310ae78373c12b78f91c64811b7d, type: 3}
 --- !u!58 &3274596178443341072
 CircleCollider2D:
@@ -288,7 +290,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

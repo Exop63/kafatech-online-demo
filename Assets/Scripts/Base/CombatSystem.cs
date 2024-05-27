@@ -6,10 +6,11 @@ public class CombatSystem : NetworkBehaviour
 {
 
     public float hitRange = 5;
+    public float shotTime = 1f;
     private double coolDown = 0;
 
 
-    private Health health;
+    [SerializeField] private Health health;
     public Health Health
     {
         get
@@ -30,9 +31,9 @@ public class CombatSystem : NetworkBehaviour
     private void HitControl()
     {
 
+        Debug.Log(name + " HitControl: " + Health.IsDeath);
+
         if (coolDown > NetworkTime.time || Health.IsDeath) return;
-
-
         var targets = Physics2D.OverlapCircleAll(transform.position, hitRange);
         // ilk olarak bizi bulacaktır.
         if (targets == null || targets.Length < 2) return;
@@ -44,25 +45,15 @@ public class CombatSystem : NetworkBehaviour
                 enemy.TryGetComponent<Health>(out var health) &&
                 !health.IsDeath)
             {
+                Debug.Log(name + " Hit");
                 Hit(target.transform);
             }
         }
-
-        coolDown = NetworkTime.time + 1;
-
+        coolDown = NetworkTime.time + shotTime;
     }
 
-    protected virtual void Hit(Transform transform)
-    {
-        throw new NotImplementedException();
-    }
+    protected virtual void Hit(Transform transform) { }
 
-    public virtual void TakeDamage(float damage)
-    {
-
-    }
-    public virtual bool CanCombat()
-    {
-        return true;
-    }
+    public virtual void TakeDamage(float damage) { }
+    public virtual bool CanCombat() { return true; }
 }

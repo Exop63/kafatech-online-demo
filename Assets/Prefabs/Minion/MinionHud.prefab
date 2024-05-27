@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.8149996}
+  m_AnchoredPosition: {x: 0, y: 2.815}
   m_SizeDelta: {x: 0, y: -5.630001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &756695454556549540
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player 1
+  m_text: Minion
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -256,12 +256,12 @@ GameObject:
   - component: {fileID: 1193880719040610483}
   - component: {fileID: -5293470730059826689}
   m_Layer: 0
-  m_Name: Hud
+  m_Name: MinionHud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1193880719040610483
 RectTransform:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 8909284171246274641}
-  txtName: {fileID: 4321919190350890180}
+  txtName: {fileID: 0}
   offset: {x: 0, y: 50}
 --- !u!1 &8379864804229504857
 GameObject:

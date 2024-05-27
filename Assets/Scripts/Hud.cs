@@ -16,18 +16,22 @@ public class Hud : MonoBehaviour
     public void Setup(Health health)
     {
         targetHealth = health;
-        txtName.text = "Player " + health.netIdentity.netId;
+        if (txtName != null)
+            txtName.text = "Player " + health.netIdentity.netId;
         rectTransform = GetComponent<RectTransform>();
         parentRectTransform = transform.parent.GetComponent<RectTransform>();
+        gameObject.SetActive(true);
     }
     void Update()
     {
-        if (targetHealth == null) return;
+        if (targetHealth == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        // Convert world position to screen position
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetHealth.transform.position);
 
-        // Convert screen position to local position in the RectTransform
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRectTransform, screenPosition, Camera.main, out localPoint);
         rectTransform.localPosition = localPoint + offset;

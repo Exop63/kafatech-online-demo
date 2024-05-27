@@ -39,13 +39,16 @@ public class Health : NetworkBehaviour
     public virtual void TakeDamage(float damage)
     {
         current = Math.Max(0, current -= damage);
-        Debug.Log(nameof(TakeDamage) + " current: " + current);
-
         if (IsDeath)
         {
-            Debug.Log(nameof(TakeDamage) + " isDeath");
-            RpcDeath();
+            Death();
         }
+    }
+    [ServerCallback]
+    protected virtual void Death()
+    {
+        RpcDeath();
+
     }
     [ClientRpc]
     public virtual void RpcDeath() { }

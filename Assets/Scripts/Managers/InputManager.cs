@@ -8,18 +8,18 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Minion.local == null) return;
+        if (Player.local == null) return;
 
         if (joystick != null && joystick.Direction.sqrMagnitude > 0)
         {
             // move 
             var dir = invertDir ? -joystick.Direction : joystick.Direction;
-            Minion.local.PlayerMove.CmdSetDirectin(dir);
+            Player.local.PlayerMove.CmdSetDirectin(dir);
         }
-        else if (Minion.local?.PlayerMove.direction.sqrMagnitude != 0)
+        else if (Player.local?.PlayerMove.direction.sqrMagnitude != 0)
         {
             // stop player
-            Minion.local?.PlayerMove.CmdSetDirectin(Vector2.zero);
+            Player.local?.PlayerMove.CmdSetDirectin(Vector2.zero);
 
         }
 

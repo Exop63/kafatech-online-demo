@@ -10,7 +10,7 @@ public class PlayerHealth : Health
         var endGame = FindAnyObjectByType<EndGamePanel>(FindObjectsInactive.Include);
         if (endGame != null)
         {
-            endGame.GetComponent<EndGamePanel>().Show(Minion.local.gameObject == gameObject);
+            endGame.GetComponent<EndGamePanel>().Show(Player.local.gameObject == gameObject);
         }
     }
 

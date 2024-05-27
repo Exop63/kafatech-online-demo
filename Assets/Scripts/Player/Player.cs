@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class Minion : NetworkBehaviour
+public class Player : NetworkBehaviour
 {
 
 
@@ -23,9 +23,9 @@ public class Minion : NetworkBehaviour
             return playerHealth;
         }
     }
-    public static Minion local;
+    public static Player local;
 
-    public static readonly List<Minion> OnlinePlayers = new List<Minion>();
+    public static readonly List<Player> OnlinePlayers = new List<Player>();
 
 
     private PlayerMove playerMove;

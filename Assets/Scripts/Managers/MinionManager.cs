@@ -15,9 +15,12 @@ public class MinionManager : MonoBehaviour
     [ServerCallback]
     private void Update()
     {
-        if (!NetworkServer.active || Minion.OnlinePlayers.Count < 2 || spawnTime > NetworkTime.time) return;
+        if (!NetworkServer.active || spawnTime > NetworkTime.time) return;
         spawnTime = NetworkTime.time + reSpawnTime;
-        var minionObject = Instantiate(minion);
+        var pos = Random.insideUnitSphere * 3.4f;
+        pos.z = 0;
+        pos.x = Mathf.Clamp(pos.x, -2.4f, 2.4f);
+        var minionObject = Instantiate(minion, pos, Quaternion.identity);
         NetworkServer.Spawn(minionObject.gameObject);
     }
 }

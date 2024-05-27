@@ -28,7 +28,6 @@ public class StartGamePanel : MonoBehaviour
             case ConnectionType.Client:
                 if (string.IsNullOrEmpty(input_Address.text))
                 {
-                    Debug.LogError("network address cannot be null or empty.");
                     Notify.Instance.ShowError("network address cannot be null or empty.");
                     return;
                 }

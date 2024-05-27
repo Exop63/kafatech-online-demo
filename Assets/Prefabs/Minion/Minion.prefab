@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 386113939822980050}
   - component: {fileID: 3274596178443341072}
   - component: {fileID: 7954541862761809763}
-  - component: {fileID: -259790649650598500}
   - component: {fileID: 995229809315322998}
   - component: {fileID: -460099325283261068}
+  - component: {fileID: -8368633815879839826}
+  - component: {fileID: -2855326756303222661}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -225,25 +226,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
---- !u!114 &-259790649650598500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806666480732845550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5713ce80121312ba26a246288d10e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  hitRange: 2
-  shotTime: 0.5
-  health: {fileID: 995229809315322998}
-  bullet: {fileID: -2272014709584064438, guid: c145310ae78373c12b78f91c64811b7d, type: 3}
 --- !u!114 &995229809315322998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,3 +262,48 @@ MonoBehaviour:
   speed: 1
   target: {fileID: 0}
   health: {fileID: 0}
+--- !u!114 &-8368633815879839826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806666480732845550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5713ce80121312ba26a246288d10e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  hitRange: 3
+  shotTime: 1
+  bullet: {fileID: -2272014709584064438, guid: c145310ae78373c12b78f91c64811b7d, type: 3}
+--- !u!50 &-2855326756303222661
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806666480732845550}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

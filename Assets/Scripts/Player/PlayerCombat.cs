@@ -21,7 +21,7 @@ public class PlayerCombat : CombatSystem
     }
     public override bool CanCombat()
     {
-        return Player.PlayerMove.IsMoving;
+        return !Player.PlayerMove.IsMoving;
     }
     [ServerCallback]
     protected override void Hit(Transform target)

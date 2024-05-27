@@ -33,8 +33,8 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        if (NetworkServer.active)
-            OnlinePlayers.Add(local);
+        if (isServer)
+            OnlinePlayers.Add(this);
     }
     public override void OnStartLocalPlayer()
     {

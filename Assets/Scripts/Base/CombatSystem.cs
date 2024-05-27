@@ -10,7 +10,7 @@ public class CombatSystem : NetworkBehaviour
     private double coolDown = 0;
 
 
-    [SerializeField] private Health health;
+    private Health health;
     public Health Health
     {
         get
@@ -23,15 +23,13 @@ public class CombatSystem : NetworkBehaviour
     [ServerCallback]
     private void Update()
     {
-        if (CanCombat() || !isServer) return;
+        if (!CanCombat() || !isServer) return;
         HitControl();
 
     }
     [ServerCallback]
     private void HitControl()
     {
-
-        Debug.Log(name + " HitControl: " + Health.IsDeath);
 
         if (coolDown > NetworkTime.time || Health.IsDeath) return;
         var targets = Physics2D.OverlapCircleAll(transform.position, hitRange);
@@ -45,7 +43,6 @@ public class CombatSystem : NetworkBehaviour
                 enemy.TryGetComponent<Health>(out var health) &&
                 !health.IsDeath)
             {
-                Debug.Log(name + " Hit");
                 Hit(target.transform);
             }
         }

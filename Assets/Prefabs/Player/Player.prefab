@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2960051703349168909}
   - component: {fileID: 5270667256426347683}
   - component: {fileID: 3274596178443341072}
+  - component: {fileID: -1135809809853215937}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -259,7 +260,6 @@ MonoBehaviour:
   syncInterval: 0
   hitRange: 2
   shotTime: 1
-  health: {fileID: 0}
   bullet: {fileID: -2272014709584064438, guid: c145310ae78373c12b78f91c64811b7d, type: 3}
 --- !u!58 &3274596178443341072
 CircleCollider2D:
@@ -296,3 +296,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!50 &-1135809809853215937
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806666480732845550}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -27,14 +27,6 @@ public class Health : NetworkBehaviour
         current = max;
     }
 
-    private void OnDestroy()
-    {
-
-        if (hudObject != null)
-        {
-            DestroyImmediate(hudObject);
-        }
-    }
     [ServerCallback]
     public virtual void TakeDamage(float damage)
     {

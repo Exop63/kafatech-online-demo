@@ -19,6 +19,7 @@ public class EndGamePanel : MonoBehaviour
             txt_Info.text = "<color=green> You Won</color>";
         }
         gameObject.SetActive(true);
+        MinionManager.CanIntreact = false;
     }
 
     public void OnClickGoToHome()
@@ -26,7 +27,6 @@ public class EndGamePanel : MonoBehaviour
         // running as a Client
         if (NetworkClient.isConnected && !NetworkServer.active)
         {
-            Debug.Log(".");
             NetworkManager.singleton.StopClient();
         }
         //running as a Host

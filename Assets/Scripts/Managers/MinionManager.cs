@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MinionManager : MonoBehaviour
 {
-
+    public static bool CanIntreact = true;
     public float reSpawnTime = 5;
 
 
@@ -12,10 +12,15 @@ public class MinionManager : MonoBehaviour
 
     private double spawnTime = 0;
 
+    private void OnEnable()
+    {
+        CanIntreact = true;
+    }
+
     [ServerCallback]
     private void Update()
     {
-        if (!NetworkServer.active || spawnTime > NetworkTime.time) return;
+        if (!NetworkServer.active || spawnTime > NetworkTime.time || !CanIntreact) return;
         spawnTime = NetworkTime.time + reSpawnTime;
         var pos = Random.insideUnitSphere * 3.4f;
         pos.z = 0;

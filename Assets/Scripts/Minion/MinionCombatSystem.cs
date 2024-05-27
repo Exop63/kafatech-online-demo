@@ -25,4 +25,8 @@ public class MinionCombatSystem : CombatSystem
     {
         Minion.MinionHealth.TakeDamage(damage);
     }
+    public override bool CanCombat()
+    {
+        return MinionManager.CanIntreact;
+    }
 }

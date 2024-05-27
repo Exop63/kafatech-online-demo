@@ -1,8 +1,10 @@
 
+using Mirror;
 using UnityEngine;
 
 public class PlayerCombat : CombatSystem
 {
+    public Bullet bullet;
     public Player Player
     {
         get
@@ -19,9 +21,13 @@ public class PlayerCombat : CombatSystem
     }
     public override bool IsMoving()
     {
-
-        Debug.Log("Is moving " + Player.PlayerMove.IsMoving);
         return Player.PlayerMove.IsMoving;
     }
-
+    [ServerCallback]
+    protected override void Hit(Transform target)
+    {
+        var bulletObject = Instantiate(bullet, transform.position, Quaternion.identity);
+        bulletObject.Setup(target.position, gameObject);
+        NetworkServer.Spawn(bulletObject.gameObject);
+    }
 }

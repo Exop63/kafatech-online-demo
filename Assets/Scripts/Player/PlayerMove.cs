@@ -9,7 +9,7 @@ public class PlayerMove : NetworkBehaviour
 
 
     [SyncVar]
-    public Vector2 direction;
+    [HideInInspector] public Vector2 direction;
 
     public bool IsMoving => direction.sqrMagnitude > 0;
     [Command]
@@ -17,6 +17,5 @@ public class PlayerMove : NetworkBehaviour
     {
         direction = dir;
         transform.position = Vector2.Lerp(transform.position, (Vector2)transform.position + dir.normalized, Time.deltaTime * speed);
-        Debug.Log("Server dir: " + dir);
     }
 }

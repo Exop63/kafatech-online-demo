@@ -1,40 +1,49 @@
+using System;
 using Mirror;
 using UnityEngine;
 
 public class CombatSystem : NetworkBehaviour
 {
 
-    double coolDown = 0;
+    public float hitRange = 5;
+    private double coolDown = 0;
 
 
     [ServerCallback]
     private void Update()
     {
-        if (IsMoving()) return;
-
-        // hit
-        if (coolDown < NetworkTime.time)
-        {
-            coolDown = NetworkTime.time + 1;
-
-            var overlaps = Physics2D.OverlapCircleAll(transform.position, 2);
-            Debug.Log("Overlaps is null " + overlaps == null);
-            if (overlaps == null) return;
-            Debug.Log("overlaps.Length " + overlaps.Length);
-
-            for (int i = 0; i < overlaps.Length; i++)
-            {
-                Debug.Log("overlaps[i] " + overlaps[i]);
-
-                if (overlaps[i].TryGetComponent<CombatSystem>(out var enemy) && enemy != this)
-                {
-                    enemy.TakeDamage(10);
-                }
-            }
-
-        }
+        if (IsMoving() || !isServer) return;
+        HitControl();
 
     }
+    [ServerCallback]
+    private void HitControl()
+    {
+
+        if (coolDown > NetworkTime.time) return;
+
+
+        var targets = Physics2D.OverlapCircleAll(transform.position, hitRange);
+        // ilk olarak bizi bulacaktır.
+        if (targets == null || targets.Length < 2) return;
+        for (int i = 0; i < targets.Length; i++)
+        {
+            var target = targets[i];
+            if (target.gameObject != gameObject && target.TryGetComponent<CombatSystem>(out var enemy))
+            {
+                Hit(target.transform);
+            }
+        }
+
+        coolDown = NetworkTime.time + 1;
+
+    }
+
+    protected virtual void Hit(Transform transform)
+    {
+        throw new NotImplementedException();
+    }
+
     public virtual void TakeDamage(float damage)
     {
 

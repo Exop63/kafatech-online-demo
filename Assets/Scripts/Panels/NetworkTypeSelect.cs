@@ -1,35 +1,49 @@
 using Mirror;
 using UnityEngine;
-using TMPro;
+
+
+public enum ConnectionType
+{
+    Server,
+    Host,
+    Client
+}
 public class NetworkTypeSelect : MonoBehaviour
 {
 
-    public TMP_InputField txt_Address;
+    public StartGamePanel startGamePanel;
 
+    [HideInInspector] public ConnectionType ConnectionType = ConnectionType.Server;
 
+    private void Awake()
+    {
+#if UNITY_ANDROID
+OnClickClient();
+#endif
+    }
 
     public void OnClickServer()
     {
-        NetworkManager.singleton.StartServer();
+        ConnectionType = ConnectionType.Server;
+        startGamePanel.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void OnClickHost()
     {
-        NetworkManager.singleton.StartHost();
+        ConnectionType = ConnectionType.Host;
+        startGamePanel.gameObject.SetActive(true);
+        gameObject.SetActive(false);
+
+
     }
 
 
     public void OnClickClient()
     {
+        ConnectionType = ConnectionType.Client;
+        startGamePanel.gameObject.SetActive(true);
+        gameObject.SetActive(false);
 
-        if (string.IsNullOrEmpty(txt_Address.text))
-        {
-            Debug.LogError("network address cannot be null or empty.");
-            Notify.Instance.ShowError("network address cannot be null or empty.");
-
-            return;
-        }
-        NetworkManager.singleton.networkAddress = txt_Address.text;
-        NetworkManager.singleton.StartClient();
     }
 }

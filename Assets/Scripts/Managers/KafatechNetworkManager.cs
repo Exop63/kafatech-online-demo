@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class KafatechNetworkManager : NetworkManager
 {
+    public void StartGame()
+    {
 
+    }
     public override void OnStartServer()
     {
         base.OnStartServer();

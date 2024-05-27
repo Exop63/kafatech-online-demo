@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (Player.local == null) return;
 
         if (joystick != null && joystick.Direction.sqrMagnitude > 0)
         {

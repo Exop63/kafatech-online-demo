@@ -11,7 +11,12 @@ public class MinionManager : MonoBehaviour
 
 
     private double spawnTime = 0;
-
+    private Vector2 bounds = Vector2.one;
+    private void Awake()
+    {
+        var characterBounds = minion.GetComponentInChildren<SpriteRenderer>().bounds.size;
+        bounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
+    }
     private void OnEnable()
     {
         CanIntreact = true;
@@ -22,9 +27,8 @@ public class MinionManager : MonoBehaviour
     {
         if (!NetworkServer.active || spawnTime > NetworkTime.time || !CanIntreact) return;
         spawnTime = NetworkTime.time + reSpawnTime;
-        var pos = Random.insideUnitSphere * 3.4f;
+        var pos = Utils.ScreenClamp(Random.insideUnitSphere * 3.4f, bounds);
         pos.z = 0;
-        pos.x = Mathf.Clamp(pos.x, -2.4f, 2.4f);
         var minionObject = Instantiate(minion, pos, Quaternion.identity);
         NetworkServer.Spawn(minionObject.gameObject);
     }

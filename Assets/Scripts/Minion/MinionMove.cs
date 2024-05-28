@@ -27,10 +27,15 @@ public class MinionMove : NetworkBehaviour
     [ServerCallback]
     private void Update()
     {
-        if (target == null || target.PlayerHealth.IsDeath)
+        if (!HasATarget())
             FindTarget();
         else
             Move();
+    }
+
+    private bool HasATarget()
+    {
+        return !(target == null || target.PlayerHealth.IsDeath);
     }
 
     private void Move()
@@ -43,20 +48,20 @@ public class MinionMove : NetworkBehaviour
 
     private void FindTarget()
     {
-        Player tmpTarget = default;
-        var tmpDistance = float.PositiveInfinity;
+        Player target = default;
+        var distance = float.PositiveInfinity;
         for (int i = 0; i < Player.OnlinePlayers.Count; i++)
         {
             var player = Player.OnlinePlayers[i];
             if (player == null) continue;
-            var distance = Vector3.Distance(player.transform.position, transform.position);
-            if (distance < tmpDistance && distance < 2)
+            var tmpDistance = Vector3.Distance(player.transform.position, transform.position);
+            if (tmpDistance < distance && tmpDistance < 2)
             {
-                tmpTarget = player;
+                target = player;
             }
         }
 
-        if (tmpTarget != default) target = tmpTarget;
+        if (target != default) this.target = target;
 
     }
 }

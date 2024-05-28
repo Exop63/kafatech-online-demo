@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Utils
 {
-    public static Vector3 ScreenClamp(Vector3 position, Vector2 bounds)
+    public static Vector3 ScreenClamp(Vector2 position, Vector2 bounds)
     {
         position.x = Mathf.Clamp(position.x, -bounds.x, bounds.x);
         position.y = Mathf.Clamp(position.y, -bounds.y, bounds.y);

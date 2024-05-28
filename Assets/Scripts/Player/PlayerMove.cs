@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : NetworkBehaviour
 {
     public float speed = 1;
-    public Vector2 bounds = Vector2.one;
+    private Vector2 bounds = Vector2.one;
 
     [SyncVar]
     [HideInInspector] public Vector2 direction;

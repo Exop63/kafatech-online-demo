@@ -17,7 +17,13 @@ public class MinionMove : NetworkBehaviour
             return health;
         }
     }
+    private Vector2 bounds = Vector2.one;
 
+    private void Awake()
+    {
+        var characterBounds = GetComponentInChildren<SpriteRenderer>().bounds.size;
+        bounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
+    }
     [ServerCallback]
     private void Update()
     {
@@ -32,7 +38,7 @@ public class MinionMove : NetworkBehaviour
         var distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance < .5f) return;
         var direction = (Vector2)(target.transform.position - transform.position);
-        transform.position = Vector2.Lerp(transform.position, (Vector2)transform.position + direction.normalized, Time.deltaTime * speed);
+        transform.position = Vector2.Lerp(transform.position, Utils.ScreenClamp((Vector2)transform.position + direction.normalized, bounds), Time.deltaTime * speed);
     }
 
     private void FindTarget()

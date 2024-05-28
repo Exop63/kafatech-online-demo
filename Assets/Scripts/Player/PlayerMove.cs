@@ -18,11 +18,20 @@ public class PlayerMove : NetworkBehaviour
         var characterBounds = GetComponentInChildren<SpriteRenderer>().bounds.size;
         bounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
     }
+    public void SetDirection(Vector2 dir)
+    {
+        CmdSetDirectin(dir);
+    }
+    private void Update()
+    {
+        transform.position = Utils.ScreenClamp((Vector2)transform.position + direction * Time.deltaTime * speed, bounds);
+    }
     [Command]
     public void CmdSetDirectin(Vector2 dir)
     {
         direction = dir;
-        transform.position = Vector2.Lerp(transform.position, Utils.ScreenClamp((Vector2)transform.position + dir.normalized, bounds), Time.deltaTime * speed);
-
     }
+
+
+
 }

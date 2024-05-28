@@ -1,11 +1,12 @@
 
+using Mirror;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
     public Joystick joystick;
     public bool invertDir = false;
-
+    [ClientCallback]
     private void Update()
     {
         if (Player.local == null) return;
@@ -14,12 +15,12 @@ public class InputManager : MonoBehaviour
         {
             // move 
             var dir = invertDir ? -joystick.Direction : joystick.Direction;
-            Player.local.PlayerMove.CmdSetDirectin(dir);
+            Player.local.PlayerMove.SetDirection(dir);
         }
         else if (Player.local?.PlayerMove.direction.sqrMagnitude != 0)
         {
             // stop player
-            Player.local?.PlayerMove.CmdSetDirectin(Vector2.zero);
+            Player.local?.PlayerMove.SetDirection(Vector2.zero);
 
         }
 

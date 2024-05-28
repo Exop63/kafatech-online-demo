@@ -17,7 +17,7 @@ public class PlayerCombat : CombatSystem
 
     public override void TakeDamage(float damage)
     {
-        player.PlayerHealth.TakeDamage(damage);
+        Player.PlayerHealth.TakeDamage(damage);
     }
     public override bool CanCombat()
     {

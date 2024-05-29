@@ -29,7 +29,6 @@ public class CustomNetworkTransformReliable : NetworkTransformUnreliable
         float normalizedX = Mathf.Clamp01((position.x - serverMinX) / (serverMaxX - serverMinX));
         float normalizedY = Mathf.Clamp01((position.y - serverMinY) / (serverMaxY - serverMinY));
 
-        Logger.Log("[" + name + "] posX: " + position.x + " normalizedX:" + normalizedX);
         // Rescaling: scaling the normalized value with local bounds
         float localX = Mathf.Lerp(localMinX, localMaxX, normalizedX);
         float localY = Mathf.Lerp(localMinY, localMaxY, normalizedY);

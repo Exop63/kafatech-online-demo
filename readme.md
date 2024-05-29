@@ -1,5 +1,16 @@
 # KafaTech - Online 2d Demo
-Mirror networking ve Unity oyun motoru ile hazırlanmıştır.
+
+Mirror networking ve Unity(2022.3.30f1) oyun motoru ile hazırlanmıştır.
+
+
+## İndirilebilir Dosyalar
+
+- [Android için APK dosyası](https://github.com/Exop63/kafatech-online-demo/releases/download/Publish/2dDemo.apk)
+- [Linux için Uygulama Paketi](https://github.com/Exop63/kafatech-online-demo/releases/download/Publish/Amd64_x86_Linux.tar.gz)
+- [Windows için Yürütülebilir Dosyası](https://github.com/Exop63/kafatech-online-demo/releases/download/Publish/Amd64_x86_windows.tar.gz)
+
+
+# Linux Server ve Host test videosu 
 
 https://youtu.be/hIBW_EaAhcs
 

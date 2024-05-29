@@ -1,4 +1,5 @@
 # KafaTech - Online 2d Demo
+Mirror networking ve Unity oyun motoru ile hazırlanmıştır.
 
 https://youtu.be/hIBW_EaAhcs
 

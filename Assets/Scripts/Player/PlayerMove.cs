@@ -20,6 +20,7 @@ public class PlayerMove : NetworkBehaviour
         var characterBounds = GetComponentInChildren<SpriteRenderer>().bounds.size;
         var tmpBounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
         CmdBound(tmpBounds, NetworkServer.active && NetworkClient.active);
+
     }
     public void SetDirection(Vector2 dir)
     {
@@ -27,8 +28,8 @@ public class PlayerMove : NetworkBehaviour
     }
     private void Update()
     {
-        if (!isServer) return;
-        transform.position = Utils.ScreenClamp((Vector2)transform.position + direction.normalized * Time.deltaTime * speed, GameManager.Instance.ServerBounds);
+        if (!isServer || direction.sqrMagnitude == 0) return;
+        transform.position = Utils.ScreenClamp((Vector2)transform.position + direction * Time.deltaTime * speed, GameManager.Instance.ServerBounds);
     }
     [Command]
     public void CmdSetDirectin(Vector2 dir)

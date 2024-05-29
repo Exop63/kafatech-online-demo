@@ -10,7 +10,11 @@ public class GameManager : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
+        ServerBounds = DefaultServerBounds;
+
     }
+
+
     [SyncVar]
     public Vector2 ServerBounds = new Vector2(2.54f, 4.74f);
     public readonly Vector2 DefaultServerBounds = new Vector2(2.54f, 4.74f);

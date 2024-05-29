@@ -2,6 +2,7 @@
 # KafaTech - Online 2D Demo[TR]
 
 Bu demo, Mirror ağ ve Unity (2022.3.30f1) oyun motoru ile hazırlanmıştır.
+
 Android de oynarken sadece client olabilirsiniz.
 Server ve host için linux veya windows bir cihaz kullanmaınız gerekiyor.
 

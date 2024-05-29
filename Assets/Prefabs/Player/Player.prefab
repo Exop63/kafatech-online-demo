@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5270667256426347683}
   - component: {fileID: 3274596178443341072}
   - component: {fileID: -1135809809853215937}
-  - component: {fileID: 3570174280237440052}
+  - component: {fileID: 5705085233995279734}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -189,6 +189,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   speed: 2
+  bounds: {x: 0, y: 0}
   direction: {x: 0, y: 0}
 --- !u!114 &2960051703349168909
 MonoBehaviour:
@@ -288,7 +289,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3570174280237440052
+--- !u!114 &5705085233995279734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 806666480732845550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Script: {fileID: 11500000, guid: ea0d70e5368bd50868f6e221c9b1ed8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0

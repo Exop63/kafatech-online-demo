@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Mirror;
 using UnityEngine;
 
 public class Utils
@@ -20,7 +20,7 @@ public class Utils
         Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
 
         // Yalnızca X (sağ sınır) ve Y (üst sınır) değerlerini al ve bir Vector2 olarak döndür
-        return new Vector2(topRight.x, topRight.y);
+        return new Vector2(Mathf.Abs(topRight.x), Mathf.Abs(topRight.y));
     }
 
 }

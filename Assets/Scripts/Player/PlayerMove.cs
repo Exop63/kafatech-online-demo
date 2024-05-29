@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMove : NetworkBehaviour
 {
     public float speed = 1;
-    private Vector2 bounds = Vector2.one;
+    [SyncVar]
+    public Vector2 bounds = Vector2.zero;
 
     [SyncVar]
     [HideInInspector] public Vector2 direction;
@@ -13,10 +14,12 @@ public class PlayerMove : NetworkBehaviour
     public bool IsMoving => direction.sqrMagnitude > 0;
 
 
-    private void Awake()
+    public override void OnStartLocalPlayer()
     {
+        base.OnStartLocalPlayer();
         var characterBounds = GetComponentInChildren<SpriteRenderer>().bounds.size;
-        bounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
+        var tmpBounds = Utils.GetScreenBounds() - (Vector2)characterBounds * .5f;
+        CmdBound(tmpBounds, NetworkServer.active && NetworkClient.active);
     }
     public void SetDirection(Vector2 dir)
     {
@@ -24,7 +27,8 @@ public class PlayerMove : NetworkBehaviour
     }
     private void Update()
     {
-        transform.position = Utils.ScreenClamp((Vector2)transform.position + direction * Time.deltaTime * speed, bounds);
+        if (!isServer) return;
+        transform.position = Utils.ScreenClamp((Vector2)transform.position + direction.normalized * Time.deltaTime * speed, GameManager.Instance.ServerBounds);
     }
     [Command]
     public void CmdSetDirectin(Vector2 dir)
@@ -32,6 +36,11 @@ public class PlayerMove : NetworkBehaviour
         direction = dir;
     }
 
-
+    [Command]
+    private void CmdBound(Vector2 bounds, bool isHost)
+    {
+        this.bounds = bounds;
+        if (isHost) GameManager.Instance.ServerBounds = bounds;
+    }
 
 }

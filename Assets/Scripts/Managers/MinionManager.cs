@@ -25,7 +25,11 @@ public class MinionManager : MonoBehaviour
     [ServerCallback]
     private void Update()
     {
+
+        return;
+#pragma warning disable CS0162 // Unreachable code detected
         if (!NetworkServer.active || spawnTime > NetworkTime.time || !CanIntreact) return;
+#pragma warning restore CS0162 // Unreachable code detected
         spawnTime = NetworkTime.time + reSpawnTime;
         var pos = Utils.ScreenClamp(Random.insideUnitSphere * 3.4f, bounds);
         pos.z = 0;
